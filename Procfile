@@ -1,1 +1,1 @@
-wdb: gunicorn myapi.wsgi --log-file -
+wdb: gunicorn myapi.wsgi
