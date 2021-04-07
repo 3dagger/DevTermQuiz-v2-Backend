@@ -1,13 +1,13 @@
 import random
 
 from django.contrib.auth.models import User, Group
-from django.template.context_processors import request
 from rest_framework import permissions, viewsets
 
-from .models import Quiz, Sample2
+from .models import Quiz, Sample2, Example, Commentary
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import QuizSerializer, UserSerializer, GroupSerializer, SampleSerializer
+from .serializers import QuizSerializer, UserSerializer, GroupSerializer, SampleSerializer, CommentarySerializer, \
+    ExampleSerializer
 
 
 # Create your views here.
@@ -23,19 +23,7 @@ def helloAPI(request):
 def randomQuiz(request, id):
     totalQuizs = Quiz.objects.all()
     randomQuizs = random.sample(list(totalQuizs), id)
-    aa = 'quiz'
-    new_dict = {aa: randomQuizs}
-    print("-1 :: " + str(Quiz.objects.all()))
-    print("0  :: " + str(Quiz.objects.filter()))
-    print("1  :: " + str(new_dict))
-    print("2  :: " + str(randomQuizs))
-
     serializer = QuizSerializer(randomQuizs, many=True)
-    print("3  :: " + str(serializer))
-    print("4  :: " + str(QuizSerializer(randomQuizs, many=True)))
-    print("5  :: " + str(Quiz))
-    print("6  :: " + str(serializer.data))
-
     return Response(serializer.data)
 
 
@@ -47,6 +35,16 @@ class QuizViewSet(viewsets.ModelViewSet):
 class helloViewSet(viewsets.ModelViewSet):
     queryset = Sample2.objects.all()
     serializer_class = SampleSerializer
+
+
+class ExampleViewSet(viewsets.ModelViewSet):
+    queryset = Example.objects.all()
+    serializer_class = ExampleSerializer
+
+
+class CommentaryViewSet(viewsets.ModelViewSet):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

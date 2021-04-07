@@ -9,6 +9,8 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'sample', views.helloViewSet)
 router.register(r"quiz", views.QuizViewSet)
+router.register(r"example", views.ExampleViewSet)
+router.register(r"commentary", views.CommentaryViewSet)
 
 urlpatterns = [
     path("hello/", helloAPI),
