@@ -6,13 +6,13 @@ from quiz.models import Quiz, Sample2, Example, Commentary
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
-        fields = ('examFirst', 'examSecond', 'examThird', 'examFourth',)
+        fields = ('firstExample', 'secondExample', 'thirdExample', 'fourthExample',)
 
 
 class CommentarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Commentary
-        fields = ('commOne', 'commTwo', 'commThree', 'commFour',)
+        fields = ('firstCommentary', 'secondCommentary', 'thirdCommentary', 'fourthCommentary',)
 
 
 class QuizSerializer(serializers.ModelSerializer):
@@ -21,7 +21,8 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ('title', 'body', 'answer', 'subtitle', 'ex', 'comm',)
+        fields = ('question', 'answer', 'ex', 'comm',)
+        # fields = '__all__'
 
 
 class SampleSerializer(serializers.ModelSerializer):

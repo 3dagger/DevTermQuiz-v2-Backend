@@ -6,8 +6,8 @@ from rest_framework import permissions, viewsets
 from .models import Quiz, Sample2, Example, Commentary
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import QuizSerializer, UserSerializer, GroupSerializer, SampleSerializer, CommentarySerializer, \
-    ExampleSerializer
+from .serializers import QuizSerializer, UserSerializer, GroupSerializer, SampleSerializer, ExampleSerializer, \
+    CommentarySerializer
 
 
 # Create your views here.
