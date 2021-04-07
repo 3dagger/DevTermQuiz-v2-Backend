@@ -40,13 +40,12 @@ def randomQuiz(request, id):
 
 
 class QuizViewSet(viewsets.ModelViewSet):
-    queryset = Quiz.objects.filter().order_by('?')[:1]
+    queryset = Quiz.objects.filter().order_by('?')[:4]
     serializer_class = QuizSerializer
 
 
 class helloViewSet(viewsets.ModelViewSet):
     queryset = Sample2.objects.all()
-    print("HelloViewSet")
     serializer_class = SampleSerializer
 
 

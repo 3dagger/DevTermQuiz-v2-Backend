@@ -14,7 +14,6 @@ class SampleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sample2
-        # fields = '__all__'
         fields = ('tracks',)
 
 
