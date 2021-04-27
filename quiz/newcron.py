@@ -1,50 +1,22 @@
-import firebase_admin
-from firebase_admin import messaging, credentials
 from pyfcm import FCMNotification
 
-# def send_to_firebase_cloud_messaging():
-#     print('Enter this method')
-#     registration_token = 'cwbKD1xMSYGobD4syT4u3I:APA91bGL0AlgN17nUxJJX3vv0X7YYdBURcII6n6qvmMoIS-Otr7yij2jpoPPS4w9v2CftIDCqFCab-tT5Ar4UV-MhN0khcowEtB7Agg8XN6ssSCbai_O-CspKdtznr8rfdjseGkjm7ze'
-#
-#     message = messaging.Message(
-#         notification=messaging.Notification(
-#             title='3dagger :: Title',
-#             body='3dagger :: Body',
-#         ),
-#         token=registration_token,
-#     )
-#
-#     response = messaging.send(message)
-#
-#     print('Successfully sent message:', response)
 APIKEY = 'AAAAntqsfJ4:APA91bFdg7guIwGDWNptuqakgwxN90bTbGH7fhpkqavIpmZBtlgrakpcQetYZwhabIUgmk4I' \
          '-G7_zRZJl7Hco_TOpnDONmcovHYBAEseA1RlqwKH4wIXeHPYjuOSKRkFqrUakCHOeFLU '
-# TOKEN = "cwbKD1xMSYGobD4syT4u3I:APA91bGL0AlgN17nUxJJX3vv0X7YYdBURcII6n6qvmMoIS-Otr7yij2jpoPPS4w9v2CftIDCqFCab
-# -tT5Ar4UV-MhN0khcowEtB7Agg8XN6ssSCbai_O-CspKdtznr8rfdjseGkjm7ze"
+TOKEN = 'dUlIlwkOR5Om5UsIrPajV9:APA91bFD-LUzxO68bv2TgRx9xL2so8g1yNBeUewO48jgyzlTMVyTadQYO41P6jzQqOt3k-hfPHp9DMXF6C48PNi-aXUVKjY_ktDT7Dv2AMABDfjSvMJmXbp0CVy_N1T9sntI_LYnbQoi'
 
 push_service = FCMNotification(APIKEY)
 
 
-def sendMessage():
+def sendMessage(body, title):
+    # 메시지 (data 타입)
+
     data_message = {
-        "body": "zz",
-        "title": "쿠폰도착"
+        "body": body,
+        "title": title
     }
-    result = push_service.notify_topic_subscribers(topic_name="3dagger", data_message=data_message)
 
+    # 토큰값을 이용해 1명에게 푸시알림을 전송함
+    result = push_service.notify_topic_subscribers(topic_name="3dagger", message_body="sd", message_title="good?")
+
+    # 전송 결과 출력
     print(result)
-
-
-def sendFirebaseMessage():
-    topic = '3dagger'
-
-    message = messaging.Message(
-        data={
-            'body': "right?",
-            'title': "all",
-        },
-        topic=topic
-    )
-
-    response = messaging.send(message)
-    print(response)

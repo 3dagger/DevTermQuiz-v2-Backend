@@ -1,8 +1,3 @@
-import firebase_admin
-from firebase_admin import credentials
+from quiz.newcron import sendMessage
 
-from quiz.newcron import sendMessage, sendFirebaseMessage
-
-cred = credentials.Certificate("service_account.json")
-firebase_admin.initialize_app(cred)
-sendFirebaseMessage()
+sendMessage("3dager", "치킨 8000원 쿠폰 도착!")
