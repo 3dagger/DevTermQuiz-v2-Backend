@@ -13,10 +13,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 # from pathlib import Path
 import os
 import dj_database_url
+import firebase_admin
+from firebase_admin import credentials
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+cred = credentials.Certificate("service_account.json")
+firebase_admin.initialize_app(cred)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -25,10 +30,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '4pp7t6%qc7ea29rfgnngl#5ca6-(5u^s&$8q)3+eft#ly(!(1q')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -41,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quiz',
     'rest_framework',
+    'django_crontab',
+    'pub',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+CRONJOBS = [
+    ('* * * * *', 'quiz.newcron.sendMessage', '>> /users/leeam/downloads/main.log 2>&1'),
+    # ('* * * * *', 'quiz.testcron.printhello', '>> /users/leeam/downloads/crontest.log 2>&1'),
 ]
 
 ROOT_URLCONF = 'myapi.urls'
@@ -79,6 +90,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -91,7 +104,6 @@ DATABASES = {
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -111,7 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -124,7 +135,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
