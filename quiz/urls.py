@@ -9,6 +9,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'quiz', views.QuizViewSet)
 router.register(r'search', views.QuizViewSet2)
+router.register(r'version_check', views.VersionCheckViewSet)
 
 urlpatterns = [
     path("<int:id>/", randomQuiz),

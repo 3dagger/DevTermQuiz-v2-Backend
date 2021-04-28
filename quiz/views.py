@@ -3,10 +3,10 @@ import random
 from django.contrib.auth.models import User, Group
 from rest_framework import permissions, viewsets
 
-from .models import Quiz
+from .models import Quiz, VersionCheck
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import QuizSerializer, UserSerializer, GroupSerializer
+from .serializers import QuizSerializer, UserSerializer, GroupSerializer, VersionCheckSerializer
 
 
 # Create your views here.
@@ -49,19 +49,9 @@ class QuizViewSet2(viewsets.ModelViewSet):
         return queryset
 
 
-# class helloViewSet(viewsets.ModelViewSet):
-#     queryset = Sample2.objects.all()
-#     serializer_class = SampleSerializer
-#
-#
-# class ExampleViewSet(viewsets.ModelViewSet):
-#     queryset = Example.objects.all()
-#     serializer_class = ExampleSerializer
-#
-#
-# class CommentaryViewSet(viewsets.ModelViewSet):
-#     queryset = Commentary.objects.all()
-#     serializer_class = CommentarySerializer
+class VersionCheckViewSet(viewsets.ModelViewSet):
+    queryset = VersionCheck.objects.all()
+    serializer_class = VersionCheckSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

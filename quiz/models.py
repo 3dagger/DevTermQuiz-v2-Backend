@@ -20,17 +20,10 @@ class Quiz(models.Model):
     fourthCommentary = models.CharField(max_length=2000, blank=True)
 
 
-# class Example(models.Model):
-#     ex = models.ForeignKey(Quiz, related_name='ex', on_delete=models.CASCADE)
-#     firstExample = models.CharField(max_length=2000, blank=True)
-#     secondExample = models.CharField(max_length=2000, blank=True)
-#     thirdExample = models.CharField(max_length=2000, blank=True)
-#     fourthExample = models.CharField(max_length=2000, blank=True)
-#
-#
-# class Commentary(models.Model):
-#     comm = models.ForeignKey(Quiz, related_name='comm', on_delete=models.CASCADE)
-#     firstCommentary = models.CharField(max_length=2000, blank=True)
-#     secondCommentary = models.CharField(max_length=2000, blank=True)
-#     thirdCommentary = models.CharField(max_length=2000, blank=True)
-#     fourthCommentary = models.CharField(max_length=2000, blank=True)
+class VersionCheck(models.Model):
+    android_version = models.CharField(max_length=1000, blank=True)
+    android_msg = models.CharField(max_length=1000, blank=True)
+    android_status = models.CharField(max_length=1000, blank=True)
+    ios_version = models.CharField(max_length=1000, blank=True)
+    ios_msg = models.CharField(max_length=1000, blank=True)
+    ios_status = models.CharField(max_length=1000, blank=True)

@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'quiz',
     'rest_framework',
     'django_crontab',
-    'pub',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 CRONJOBS = [
-    ('* * * * *', 'quiz.newcron.sendMessage', '>> /users/leeam/downloads/main.log 2>&1'),
+    ('* * * * *', 'quiz.cron.sendMessage'),
     # ('* * * * *', 'quiz.testcron.printhello', '>> /users/leeam/downloads/crontest.log 2>&1'),
 ]
 
